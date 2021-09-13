@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
 public class UnprocessableEntityException extends Exception {
-
+	// Considerar extender de RuntimeException, ya que simplemente se lanzan para terminar el flujo
+	
 	/**
 	 * 
 	 */

@@ -22,21 +22,27 @@ public class CharacterServiceApi implements ServicesApi {
 	 */
 	public CharacterSchema getCharacterById(Integer idCharacter) {
 		CharacterSchema character = new CharacterSchema();
+		
+		// utilizar un cliente http mas completo suele ser bueno, pero se agradeceria configurarlo mediante http request factory y utilizar un rest template
 		OkHttpClient client = new OkHttpClient().newBuilder().build();
 		Request request = new Request.Builder()
+			// Considerar mover url base a configuration properties
 		  .url("https://rickandmortyapi.com/api/character/" + idCharacter)
 		  .method("GET", null)
 		  .build();
 		
 		try {
 			Response response = client.newCall(request).execute();
+			
 			String responseBody = response.body().string();
+			//si deseo utilizar gson en vez de jackson puedo hacerlo con un http message converter siempre y cuando este utilizando un rest template
 			// Gson
 	        GsonBuilder builder = new GsonBuilder();
 	        Gson gson = builder.create();;
 	        character = gson.fromJson(responseBody, CharacterSchema.class);
 	        
 		} catch (IOException e) {
+			// falto controlar o lanzar una excepcion propia aca 
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

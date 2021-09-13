@@ -30,6 +30,7 @@ public class SwaggerConfig {
     }
 
     @SuppressWarnings("unchecked")
+    // Suprimir warnings nos previene de encontrar formas mejores de hacer las cosas
 	private ApiInfo swaggerInfo() {
     	@SuppressWarnings("rawtypes")
 		List<VendorExtension> vendorExtension = Collections.EMPTY_LIST;
