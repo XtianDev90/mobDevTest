@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class NotFoundException extends Exception {
+	// Considerar extender de RuntimeException, ya que simplemente se lanzan para terminar el flujo
 
 	/**
 	 * 

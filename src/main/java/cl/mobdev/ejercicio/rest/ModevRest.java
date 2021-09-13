@@ -19,12 +19,16 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/mobdev/v1")
+// ¿Porque se utilizó este tipo de inyección de dependencias?
 public class ModevRest {
 	
+	
 	@Autowired
+	//¿Porque no es private?
 	ServicesApi serviceApi;
 	
 	@Autowired
+	// Debiese estar declarado como ApiValidator
 	private ApiValidatorImpl validator;
 	
 	/**
@@ -44,6 +48,7 @@ public class ModevRest {
 	 * @throws UnprocessableEntityException
 	 */
 	@ApiOperation(value = "Consulta un personaje según el ID.")
+	// Considerar mover anotaciones de OAS a una interfaz, para simplificar la implementacion del codigo
 	@GetMapping("/find/{idCharacter}")
 	public ResponseEntity<RootSchema> getCharacterById(@PathVariable("idCharacter") Integer idCharacter) throws UnprocessableEntityException{
 		RootSchema out = new RootSchema();
@@ -51,6 +56,7 @@ public class ModevRest {
 		this.validator.validatorId(idCharacter);
 		CharacterSchema character = serviceApi.getCharacterById(idCharacter);
 		
+		//
 		LocationSchema locationRes = null;
 		if(character != null) {
 			locationRes = serviceApi.getLocationById(character.getLocation());
@@ -68,6 +74,7 @@ public class ModevRest {
 	 * @param locationRes
 	 * @return
 	 */
+	//Considerar mover metodo a una clase que se encargue de mapear la salida
 	public RootSchema generarSalida(CharacterSchema character, LocationSchema locationRes) {
 		RootSchema out = new RootSchema();
 		out.setId(character.getId());

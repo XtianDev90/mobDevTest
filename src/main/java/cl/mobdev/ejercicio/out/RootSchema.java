@@ -1,5 +1,9 @@
 package cl.mobdev.ejercicio.out;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+//El nombre de la clase podria ser mas especifico, Character por ejemplo
 public class RootSchema {
 
 	private int id;
@@ -7,6 +11,7 @@ public class RootSchema {
 	private String status;
 	private String species;
 	private String type;
+	//Considerar usar opciones de serializacion de jackson como JsonProperty, o spring.jackson.property-naming-strategy para serializar como snake case
 	private int episode_count;
 	private Origin origin;
 	
